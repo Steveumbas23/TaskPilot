@@ -57,8 +57,18 @@ function Dashboard() {
           <h2 className="dashboard-greeting">Hello, Stefeee</h2>
 
           <div className="header-actions">
-            <div className="header-search-placeholder" />
-            <div className="header-avatar" />
+            <label className="header-search">
+              <span className="header-search-icon">⌕</span>
+              <input type="text" placeholder="Search..." />
+            </label>
+
+            <div className="header-profile">
+              <div className="header-avatar" />
+              <div className="header-profile-text">
+                <p className="header-profile-name">Stefeee</p>
+                <p className="header-profile-role">Admin</p>
+              </div>
+            </div>
           </div>
         </header>
 
