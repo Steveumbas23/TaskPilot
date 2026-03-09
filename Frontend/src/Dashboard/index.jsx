@@ -62,6 +62,7 @@ const sidebarNav = [
 
 function Dashboard() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
 
   return (
     <div className="dashboard-layout">
@@ -105,13 +106,25 @@ function Dashboard() {
               <input type="text" placeholder="Search..." />
             </label>
 
-            <div className="header-profile">
+            <button
+              type="button"
+              className="header-profile"
+              onClick={() => setIsProfileOpen((prev) => !prev)}
+            >
               <div className="header-avatar" />
               <div className="header-profile-text">
                 <p className="header-profile-name">Stefeee</p>
                 <p className="header-profile-role">Admin</p>
               </div>
-            </div>
+            </button>
+
+            {isProfileOpen && (
+              <div className="profile-dropdown">
+                <button type="button" className="profile-dropdown-item">
+                  Logout
+                </button>
+              </div>
+            )}
           </div>
         </header>
 
