@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../assets/style.css";
 
 const stats = [
@@ -64,6 +64,18 @@ function Dashboard() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
 
+  useEffect(() => {
+    if (isProfileOpen) {
+      document.body.classList.add("modal-open");
+    } else {
+      document.body.classList.remove("modal-open");
+    }
+
+    return () => {
+      document.body.classList.remove("modal-open");
+    };
+  }, [isProfileOpen]);
+
   return (
     <div className="dashboard-layout">
       <aside className={`dashboard-sidebar ${!isSidebarOpen ? "is-collapsed" : ""}`}>
@@ -119,10 +131,36 @@ function Dashboard() {
             </button>
 
             {isProfileOpen && (
-              <div className="profile-dropdown">
-                <button type="button" className="profile-dropdown-item">
-                  Logout
-                </button>
+              <div className="profile-modal-backdrop" onClick={() => setIsProfileOpen(false)}>
+                <div
+                  className="profile-modal"
+                  role="dialog"
+                  aria-modal="true"
+                  aria-label="Profile details"
+                  onClick={(event) => event.stopPropagation()}
+                >
+                  <div className="profile-modal-header">
+                    <div className="profile-modal-avatar" />
+                    <div className="profile-modal-info">
+                      <div className="profile-modal-name-row">
+                        <p className="profile-modal-name">Stefeee</p>
+                        <button
+                          type="button"
+                          className="profile-modal-close"
+                          aria-label="Close profile"
+                          onClick={() => setIsProfileOpen(false)}
+                        >
+                          ×
+                        </button>
+                      </div>
+                      <p className="profile-modal-email">stefeee@astm.io</p>
+                    </div>
+                  </div>
+
+                  <button type="button" className="profile-modal-logout">
+                    Logout
+                  </button>
+                </div>
               </div>
             )}
           </div>
