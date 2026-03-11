@@ -141,7 +141,7 @@ function Dashboard() {
 
         {isSidebarOpen && (
           <button type="button" className="sidebar-primary">
-            + Create Task
+            + Add Workout
           </button>
         )}
 
